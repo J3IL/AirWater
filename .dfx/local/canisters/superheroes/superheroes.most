@@ -1,0 +1,20 @@
+// Version: 1.0.0
+type AssocList<K, V> = List<(K, V)>;
+type AssocList__1<K, V> = AssocList<K, V>;
+type Branch<K, V> = {left : Trie<K, V>; right : Trie<K, V>; size : Nat};
+type Hash = Nat32;
+type Key<K> = {hash : Hash; key : K};
+type Leaf<K, V> = {keyvals : AssocList__1<Key<K>, V>; size : Nat};
+type List<T> = ?(T, List<T>);
+type Superhero = {name : Text; superpowers : List<Text>};
+type SuperheroId = Nat32;
+type Trie<K, V> = {#branch : Branch<K, V>; #empty; #leaf : Leaf<K, V>};
+actor {
+  stable var next : Nat32;
+  stable var superheroes :
+    {
+      #branch : Branch<SuperheroId, Superhero>;
+      #empty;
+      #leaf : Leaf<SuperheroId, Superhero>
+    }
+};
